@@ -4,6 +4,12 @@
  */
 package aps6semestre;
 
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Pichau
@@ -26,8 +32,8 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_Foto = new javax.swing.JButton();
+        btn_Login = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -38,33 +44,32 @@ public class Home extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
         setName("Home"); // NOI18N
-        setResizable(false);
 
-        jButton2.setBackground(new java.awt.Color(32, 34, 37));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Selecionar Foto");
-        jButton2.setToolTipText("Escolher foto para analise");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setName("selectFoto"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Foto.setBackground(new java.awt.Color(32, 34, 37));
+        btn_Foto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_Foto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Foto.setText("Selecionar Foto");
+        btn_Foto.setToolTipText("Escolher foto para analise");
+        btn_Foto.setBorder(null);
+        btn_Foto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Foto.setName("selectFoto"); // NOI18N
+        btn_Foto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_FotoActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(32, 34, 37));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Login");
-        jButton3.setToolTipText("Escolher foto para analise");
-        jButton3.setBorder(null);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setName("selectFoto"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_Login.setBackground(new java.awt.Color(32, 34, 37));
+        btn_Login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_Login.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Login.setText("Login");
+        btn_Login.setToolTipText("Escolher foto para analise");
+        btn_Login.setBorder(null);
+        btn_Login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Login.setName("selectFoto"); // NOI18N
+        btn_Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_LoginActionPerformed(evt);
             }
         });
 
@@ -76,6 +81,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Arquivo Selecionado");
         jLabel2.setAutoscrolls(true);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -89,29 +95,29 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(290, 290, 290)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(361, 361, 361)
                         .addComponent(jLabel1)))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(560, 560, 560))
+                .addGap(0, 569, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(570, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(104, 104, 104)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(261, 261, 261)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addGap(117, 117, 117))
         );
 
@@ -119,14 +125,28 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn_FotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FotoActionPerformed
+        JFileChooser file = new JFileChooser();
+        file.addChoosableFileFilter(new FileNameExtensionFilter("*.Images", "png","jpg"));
+        int result = file.showSaveDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            ImageIcon img = new ImageIcon(path);
+            jLabel2.setText("");
+            jLabel2.setIcon(img);
+        }
+    }//GEN-LAST:event_btn_FotoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Informacoes inf = new Informacoes();
-        inf.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
+        if (jLabel2.getIcon() == null) {
+            JOptionPane.showMessageDialog(null, "Erro: Imagem não selecionada!");
+        } else {
+            Informacoes inf = new Informacoes();
+            inf.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_btn_LoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,8 +184,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_Foto;
+    private javax.swing.JButton btn_Login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
