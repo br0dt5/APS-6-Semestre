@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package aps6semestre;
+package com.unip.gui;
 
-/**
- *
- * @author Pichau
- */
+import com.unip.util.DAO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Informacoes extends javax.swing.JFrame {
 
     /**
@@ -15,6 +14,33 @@ public class Informacoes extends javax.swing.JFrame {
      */
     public Informacoes() {
         initComponents();
+    }
+
+    public Informacoes(int nivel) {
+        initComponents();
+        
+        Connection con = null;
+        try {
+            con = DAO.connectToDB();
+            
+            List<String[]> result = DAO.doQueryOperation(con, "SELECT * FROM Informacoes WHERE Nivel <= " + nivel);
+            
+            jTextArea1.setText("");
+            jLabel2.setText("Você possui permissões de nível " + nivel);
+            
+            for (int i = 0; i < result.size(); i++) {
+                jTextArea1.append("\nNível de informação: " + result.get(i)[0]);
+                jTextArea1.append("\nInformação: " + result.get(i)[1] + "\n");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Informacoes.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (con != null) try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Informacoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -28,8 +54,6 @@ public class Informacoes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
@@ -49,8 +73,7 @@ public class Informacoes extends javax.swing.JFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setName("selectFile"); // NOI18N
 
-        jScrollPane1.setViewportView(jTextPane1);
-
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
@@ -69,24 +92,20 @@ public class Informacoes extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                        .addGap(400, 400, 400)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,9 +150,7 @@ public class Informacoes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

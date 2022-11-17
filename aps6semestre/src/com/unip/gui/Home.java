@@ -1,21 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package aps6semestre;
+package com.unip.gui;
 
+import com.unip.util.CompareImages;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author Pichau
- */
 public class Home extends javax.swing.JFrame {
 
+    private File imageFile;
     /**
      * Creates new form Home
      */
@@ -35,7 +35,10 @@ public class Home extends javax.swing.JFrame {
         btn_Foto = new javax.swing.JButton();
         btn_Login = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_Image = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -79,13 +82,21 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setAutoscrolls(true);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Arquivo Selecionado");
-        jLabel2.setAutoscrolls(true);
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setName("selectFile"); // NOI18N
+        lbl_Image.setBackground(new java.awt.Color(0, 0, 0));
+        lbl_Image.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_Image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_Image.setText("Arquivo Selecionado");
+        lbl_Image.setAutoscrolls(true);
+        lbl_Image.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lbl_Image.setName("selectFile"); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Nível de acesso (1-3):");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Imagem de comparação:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,31 +105,43 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(btn_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(300, 300, 300)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)
+                                .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(361, 361, 361)
+                        .addGap(391, 391, 391)
                         .addComponent(jLabel1)))
-                .addContainerGap(289, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 569, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(570, Short.MAX_VALUE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(112, 112, 112)
                 .addComponent(jLabel1)
-                .addGap(261, 261, 261)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addGap(117, 117, 117))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(lbl_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,24 +153,59 @@ public class Home extends javax.swing.JFrame {
         file.addChoosableFileFilter(new FileNameExtensionFilter("*.Images", "png","jpg"));
         int result = file.showSaveDialog(null);
         if(result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = file.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-            ImageIcon img = new ImageIcon(path);
-            jLabel2.setText("");
-            jLabel2.setIcon(img);
+            imageFile = file.getSelectedFile();
+            String path = imageFile.getAbsolutePath();
+            ImageIcon image = new ImageIcon(path);
+            lbl_Image.setText("");
+            lbl_Image.setIcon(resizeImage(image));
         }
     }//GEN-LAST:event_btn_FotoActionPerformed
 
+    private ImageIcon resizeImage(ImageIcon imageicon) {
+        Image image = imageicon.getImage();
+        Image newImage = image.getScaledInstance(lbl_Image.getWidth(), lbl_Image.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon newImageIcon = new ImageIcon(newImage);
+        
+        return newImageIcon;
+    }
+    
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
-        if (jLabel2.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, "Erro: Imagem não selecionada!");
+        if (lbl_Image.getIcon() == null) {
+            JOptionPane.showMessageDialog(null, "Erro: Informações incompletas! Por favor, informe o nível de acesso e selecione uma imagem.");
         } else {
-            Informacoes inf = new Informacoes();
-            inf.setVisible(true);
-            this.setVisible(false);
+
+            try {
+                BufferedImage image1 = ImageIO.read(imageFile);
+                BufferedImage image2 = getImageByAccessLevel(jComboBox1.getSelectedItem());
+
+                if (compareImages(image1, image2)) {
+                    Informacoes inf = new Informacoes(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
+                    inf.setVisible(true);
+                    this.setVisible(false);
+                } else JOptionPane.showMessageDialog(null, "Erro! Autenticação por imagem falhou! Certifique-se que escolheu a imagem correta e tente novamente.");
+            } catch (IOException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (RuntimeException ex) {
+                JOptionPane.showMessageDialog(null, "Erro! Autenticação por imagem falhou! Certifique-se que escolheu a imagem correta e tente novamente.");
+            } 
         }
     }//GEN-LAST:event_btn_LoginActionPerformed
 
+    private boolean compareImages(BufferedImage image1, BufferedImage image2) throws RuntimeException {
+        double difference = CompareImages.Compare(image1, image2);
+        if (difference > 20) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private BufferedImage getImageByAccessLevel(Object selectedItem) throws IOException {
+        var item = Integer.valueOf(selectedItem.toString());
+        String path = "src/com/unip/images/imagem" + item + ".jpg";
+        
+        return ImageIO.read(new File(path));
+    }
     /**
      * @param args the command line arguments
      */
@@ -174,7 +232,7 @@ public class Home extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -186,7 +244,11 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Foto;
     private javax.swing.JButton btn_Login;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lbl_Image;
     // End of variables declaration//GEN-END:variables
+    
 }

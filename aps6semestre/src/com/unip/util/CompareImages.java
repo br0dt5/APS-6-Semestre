@@ -1,14 +1,11 @@
-package aps6semestre;
+package com.unip.util;
 
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author luanz
- */
 public class CompareImages {
     /**
-     * Realiza a comparação entre 2 imagens quaisquer.
+     * Realiza a comparação entre 2 imagens quaisquer e
+     * imprime a porcentagem de diferença no terminal de comandos (console).
      * @param image1 Imagem número 1.
      * @param image2 Imagem número 2.
      * @return Porcentagem de diferença entre as duas imagens.
@@ -47,6 +44,9 @@ public class CompareImages {
             double total_pixels = width1 * height1 * 3;
             double avg_different_pixels = difference / total_pixels;
             double percentage = (avg_different_pixels / 255) * 100;
+            
+            System.out.println("Porcentagem de diferença: " + percentage);
+            
             return percentage;
         }
     }
